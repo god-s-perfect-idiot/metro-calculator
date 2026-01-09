@@ -7,11 +7,12 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "android:clean": "rm -rf dist android/app/src/main/assets/public",
     "android:sync": "cap sync android",
     "android:open": "cap open android",
-    "android:run": "npm run build && cap sync android && cap open android",
-    "android:build": "npm run build && cap sync android",
-    "android:apk": "npm run build && cap sync android && cd android && ./gradlew assembleDebug"
+    "android:run": "pnpm run build && pnpm run android:sync && pnpm run android:open",
+    "android:build": "pnpm run build && pnpm run android:sync",
+    "android:apk": "pnpm run build && pnpm run android:sync && cd android && ./gradlew clean assembleDebug"
   },
   "dependencies": {
     "@capacitor/android": "^5.5.1",

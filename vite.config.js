@@ -9,14 +9,7 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: false
-  },
-  resolve: {
-    alias: {
-      $lib: '/src/lib',
-      $components: '/src/components',
-      $store: '/src/store',
-      $utils: '/src/utils'
-    }
+    sourcemap: false,
+    emptyOutDir: true
   }
 });
