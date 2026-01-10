@@ -344,13 +344,13 @@ import { onMount } from 'svelte';
       <button class="calc-btn !text-[2rem] !bg-[#2e2e2e]">(</button>
       <button class="calc-btn !text-[2rem] !bg-[#2e2e2e]">)</button>
       <button class="calc-btn !text-[2rem] !bg-[#2e2e2e]" on:click={pi}>π</button>
-      <button class="calc-btn !text-[3rem] !bg-[#2e2e2e]" on:click={clear}>C</button>
+      <button class="calc-btn !text-[2rem] !bg-[#2e2e2e]" on:click={clear}>C</button>
       <button class="calc-btn !bg-[#2e2e2e]" on:click={backspace}>
         <Icon icon="cil:backspace" width="40" height="40"/>
       </button>
-      <button class="calc-btn !text-[3rem] !bg-[#2e2e2e]" on:click={toggleSign}>±</button>
-      <button class="calc-btn !text-[3rem] !bg-[#2e2e2e]" on:click={() => setOperation('÷')}>÷</button>
-      <button class="calc-btn !text-[3rem] !bg-[#2e2e2e]" on:click={percentage}>%</button>
+      <button class="calc-btn !text-[2rem] !bg-[#2e2e2e]" on:click={toggleSign}>±</button>
+      <button class="calc-btn !text-[2rem] !bg-[#2e2e2e]" on:click={() => setOperation('÷')}>÷</button>
+      <button class="calc-btn !text-[2rem] !bg-[#2e2e2e]" on:click={percentage}>%</button>
 
       <!-- Row 2 -->
       <button class="calc-btn !text-[2rem] !bg-[#2e2e2e] {angleMode === 'Deg' ? 'active' : ''}" on:click={() => setAngleMode('Deg')}>Deg</button>
@@ -359,7 +359,7 @@ import { onMount } from 'svelte';
       <button class="calc-btn !text-[2rem]" on:click={() => inputNumber('7')}>7</button>
       <button class="calc-btn !text-[2rem]" on:click={() => inputNumber('8')}>8</button>
       <button class="calc-btn !text-[2rem]" on:click={() => inputNumber('9')}>9</button>
-      <button class="calc-btn !text-[3rem] !bg-[#2e2e2e]" on:click={() => setOperation('×')}>×</button>
+      <button class="calc-btn !text-[2rem] !bg-[#2e2e2e]" on:click={() => setOperation('×')}>×</button>
       <button class="calc-btn !text-[2rem] !bg-[#2e2e2e]" on:click={squareRoot}>√</button>
 
       <!-- Row 3 -->
@@ -369,7 +369,7 @@ import { onMount } from 'svelte';
       <button class="calc-btn !text-[2rem]" on:click={() => inputNumber('4')}>4</button>
       <button class="calc-btn !text-[2rem]" on:click={() => inputNumber('5')}>5</button>
       <button class="calc-btn !text-[2rem]" on:click={() => inputNumber('6')}>6</button>
-      <button class="calc-btn !text-[3rem] !bg-[#2e2e2e]" on:click={() => setOperation('-')}>−</button>
+      <button class="calc-btn !text-[2rem] !bg-[#2e2e2e]" on:click={() => setOperation('-')}>−</button>
       <button class="calc-btn !text-[2rem] !bg-[#2e2e2e]" on:click={memoryClear}>MC</button>
 
       <!-- Row 4 -->
@@ -379,7 +379,7 @@ import { onMount } from 'svelte';
       <button class="calc-btn !text-[2rem]" on:click={() => inputNumber('1')}>1</button>
       <button class="calc-btn !text-[2rem]" on:click={() => inputNumber('2')}>2</button>
       <button class="calc-btn !text-[2rem]" on:click={() => inputNumber('3')}>3</button>
-      <button class="calc-btn !text-[3rem] !bg-[#2e2e2e]" on:click={() => setOperation('+')}>+</button>
+      <button class="calc-btn !text-[2rem] !bg-[#2e2e2e]" on:click={() => setOperation('+')}>+</button>
       <button class="calc-btn !text-[2rem] !bg-[#2e2e2e]" on:click={memoryRecall}>MR</button>
 
       <!-- Row 5 -->
@@ -448,7 +448,7 @@ import { onMount } from 'svelte';
   }
 
   .display-area {
-    flex: 0 0 35%;
+    flex: 1 1 0;
     padding: 1rem 1.5rem 0.5rem;
     display: flex;
     flex-direction: column;
@@ -486,25 +486,24 @@ import { onMount } from 'svelte';
   }
 
   .button-grid {
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     display: grid;
-    gap: 0.5rem;
+    gap: 0.65rem;
     padding: 0.5rem;
     width: 100%;
     min-height: 0;
-    max-height: 100%;
     overflow: hidden;
     box-sizing: border-box;
   }
 
   .button-grid.basic {
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6, minmax(0, 1fr));
+    grid-template-rows: repeat(6, minmax(auto, 4.5rem));
   }
 
   .button-grid.scientific {
     grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(5, minmax(auto, 2.5rem));
   }
 
   .calc-btn {
@@ -520,6 +519,7 @@ import { onMount } from 'svelte';
     transition: background-color 0.1s ease;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+    max-height: 4.5rem;
   }
 
   .calc-btn:active {
@@ -550,13 +550,13 @@ import { onMount } from 'svelte';
 
   @media (orientation: landscape) {
     .display-area {
-      flex: 0 0 8rem;
+      flex: 1 1 0;
       height: 8rem;
     }
     
     .button-grid {
-      flex: 1 1 auto;
-      height: calc(100vh - 8rem);
+      flex: 0 0 auto;
+      height: auto;
       padding-left: 4rem;
       padding-right: 4rem;
     }

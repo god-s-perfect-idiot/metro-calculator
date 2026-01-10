@@ -2,8 +2,6 @@
   import { onMount } from "svelte";
   import CalculatorPage from "./pages/CalculatorPage.svelte";
   import { App as CapacitorApp } from "@capacitor/app";
-  import { StatusBar, Style } from "@capacitor/status-bar";
-  import StatusBarComponent from "./pages/StatusBar.svelte";
 
   let mounted = false;
 
@@ -13,20 +11,6 @@
     // Initialize Capacitor plugins
     async function initCapacitor() {
       try {
-        await StatusBar.setOverlaysWebView({ overlay: true });
-        await StatusBar.setBackgroundColor({ color: '#000000' });
-        await StatusBar.setStyle({ style: Style.Light });
-        await StatusBar.hide();
-        
-        CapacitorApp.addListener('appStateChange', ({ isActive }) => {
-          if (isActive) {
-            StatusBar.setOverlaysWebView({ overlay: true }).catch(() => {});
-            StatusBar.setBackgroundColor({ color: '#000000' }).catch(() => {});
-            StatusBar.setStyle({ style: Style.Light }).catch(() => {});
-            StatusBar.hide().catch(() => {});
-          }
-        });
-        
         CapacitorApp.addListener('backButton', ({ canGoBack }) => {
           if (!canGoBack) {
             CapacitorApp.exitApp();
@@ -44,7 +28,6 @@
 </script>
 
 <main class="w-full h-full relative">
-  <StatusBarComponent />
   <div class="page-holder">
     <div class="page" class:flip-in={mounted}>
       <CalculatorPage />
